@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ContactForm } from "@/app/components/ContactForm";
 import { HeroActions } from "@/app/components/HeroActions";
+import { ProfilePhoto } from "@/app/components/ProfilePhoto";
 import { SiteHeader } from "@/app/components/SiteHeader";
 
 const profile = {
@@ -16,6 +17,8 @@ const profile = {
     linkedin: "https://www.linkedin.com/in/john-tran-0197b7253/",
     resume: "/resume.pdf",
   },
+  /** Place image at public/profile.jpg (or change path below). Supported: jpg, png, webp */
+  photoSrc: "/profile.jpg",
 };
 
 /** Reverse chronological — Mitsubishi Heavy Industries America */
@@ -168,20 +171,25 @@ export default function Home() {
 
       <main id="main-content" className="mx-auto max-w-3xl px-6 pb-24 pt-6 md:pt-10">
         <div className="mb-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm md:mb-16 md:p-10 dark:shadow-none">
-          <p className="text-sm font-medium text-sky-700 dark:text-sky-400">{profile.location}</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
-            {profile.name}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 md:text-xl dark:text-zinc-300">
-            {profile.headline}
-          </p>
-          <div className="mt-8">
-            <HeroActions
-              linkedin={profile.links.linkedin}
-              github={profile.links.github}
-              email={profile.links.email}
-              resumePath={profile.links.resume}
-            />
+          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
+            <ProfilePhoto name={profile.name} src={profile.photoSrc} />
+            <div className="min-w-0 flex-1 text-center md:text-left">
+              <p className="text-sm font-medium text-sky-700 dark:text-sky-400">{profile.location}</p>
+              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
+                {profile.name}
+              </h1>
+              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 md:mx-0 md:text-xl dark:text-zinc-300">
+                {profile.headline}
+              </p>
+              <div className="mt-8 flex justify-center md:justify-start">
+                <HeroActions
+                  linkedin={profile.links.linkedin}
+                  github={profile.links.github}
+                  email={profile.links.email}
+                  resumePath={profile.links.resume}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
