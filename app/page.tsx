@@ -9,7 +9,7 @@ const profile = {
     "HRIS Technical Solutions Analyst · integrations developer (Boomi, UKG Pro WFM & Payroll)",
   location: "Houston, Texas",
   summary:
-    "Results-driven HRIS analyst focused on cloud integrations and reliable data movement between HR and workforce systems. I design and maintain integrations in Boomi for UKG Pro Workforce Management, including Workforce Management API flows, scripting (Python, Groovy), and secure file exchange. I’ve also built and supported payroll-side import pipelines—file layouts, field mappings, SFTP/PGP, and disciplined testing—to keep UKG Pro Payroll imports accurate and auditable. I like partnering with stakeholders to translate messy requirements into integrations that hold up in production.",
+    "HRIS analyst specializing in enterprise integrations and disciplined data exchange between HR, payroll, and workforce platforms. I design, implement, and support Boomi-based integrations for UKG Pro Workforce Management, including Workforce Management API patterns, transformation logic in Python and Groovy, and secure file-based workflows. I also deliver payroll import capabilities for UKG Pro Payroll—end-to-end file design, field mapping, SFTP/PGP controls, and structured testing—to improve accuracy, traceability, and operational readiness. I work closely with business and technical stakeholders to clarify requirements, mitigate risk, and ship integrations that remain maintainable after go-live.",
   links: {
     email: "mailto:johntran1055@gmail.com",
     github: "https://github.com/johnphuongtran",
