@@ -6,8 +6,7 @@ import { SiteHeader } from "@/app/components/SiteHeader";
 
 const profile = {
   name: "John Tran",
-  headline:
-    "HRIS Technical Solutions Analyst · integrations developer (Boomi, UKG Pro WFM & Payroll)",
+  headline: "Integrations Developer",
   location: "Houston, Texas",
   summary:
     "HRIS analyst specializing in enterprise integrations and disciplined data exchange between HR, payroll, and workforce platforms. I design, implement, and support Boomi-based integrations for UKG Pro Workforce Management, including Workforce Management API patterns, transformation logic in Python and Groovy, and secure file-based workflows. I also deliver payroll import capabilities for UKG Pro Payroll—end-to-end file design, field mapping, SFTP/PGP controls, and structured testing—to improve accuracy, traceability, and operational readiness. I work closely with business and technical stakeholders to clarify requirements, mitigate risk, and ship integrations that remain maintainable after go-live.",
