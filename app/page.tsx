@@ -195,12 +195,10 @@ export default function Home() {
 
         <Section id="about" title="About">
           <Card>
-            <p className="max-w-3xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-              {profile.summary}
-            </p>
-            <p className="mt-5 max-w-3xl border-t border-[var(--border)] pt-5 text-sm text-zinc-600 dark:text-zinc-400">
-              Fluent in English and Vietnamese.
-            </p>
+            <p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-300">{profile.summary}</p>
+            <div className="mt-6 w-full border-t border-[var(--border)] pt-6">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">Fluent in English and Vietnamese.</p>
+            </div>
           </Card>
         </Section>
 
