@@ -43,9 +43,29 @@ html {
 
 body {
   background-color: var(--background);
+  /* Later layers paint on top: corners first (behind), then full-width washes */
   background-image:
-    radial-gradient(ellipse 120% 80% at 50% -20%, var(--accent-muted), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, var(--accent-muted), transparent 45%);
+    radial-gradient(
+      ellipse 48% 40% at 96% 6%,
+      color-mix(in oklab, var(--accent-muted) 72%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 48% 40% at 96% 94%,
+      color-mix(in oklab, var(--accent-muted) 72%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 220% 48% at 50% -10%,
+      var(--accent-muted) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 220% 48% at 50% 110%,
+      var(--accent-muted) 0%,
+      transparent 58%
+    );
+  background-attachment: fixed;
   color: var(--foreground);
 }
 
