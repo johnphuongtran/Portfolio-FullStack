@@ -43,7 +43,7 @@ export function SiteHeader({ name }: { name: string }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[color-mix(in_oklab,var(--background)_85%,transparent)] backdrop-blur-xl">
-      <div className="relative mx-auto flex h-14 max-w-3xl items-center justify-between gap-3 px-6">
+      <div className="relative mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-6 md:px-8">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-14 focus:z-[60] focus:rounded-md focus:bg-sky-600 focus:px-3 focus:py-2 focus:text-sm focus:text-white focus:shadow-lg"

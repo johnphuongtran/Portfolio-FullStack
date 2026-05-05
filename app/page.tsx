@@ -169,7 +169,7 @@ export default function Home() {
     <>
       <SiteHeader name={profile.name} />
 
-      <main id="main-content" className="mx-auto max-w-3xl px-6 pb-24 pt-6 md:pt-10">
+      <main id="main-content" className="mx-auto max-w-5xl px-6 pb-24 pt-6 md:px-8 md:pt-10">
         <div className="mb-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm md:mb-16 md:p-10 dark:shadow-none">
           <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
             <ProfilePhoto name={profile.name} src={profile.photoSrc} />
@@ -178,7 +178,7 @@ export default function Home() {
               <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
                 {profile.name}
               </h1>
-              <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 md:mx-0 md:text-xl dark:text-zinc-300">
+              <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-zinc-600 md:mx-0 md:text-xl dark:text-zinc-300">
                 {profile.headline}
               </p>
               <div className="mt-8 flex justify-center md:justify-start">
@@ -195,10 +195,10 @@ export default function Home() {
 
         <Section id="about" title="About">
           <Card>
-            <p className="max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <p className="max-w-3xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
               {profile.summary}
             </p>
-            <p className="mt-5 max-w-2xl border-t border-[var(--border)] pt-5 text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="mt-5 max-w-3xl border-t border-[var(--border)] pt-5 text-sm text-zinc-600 dark:text-zinc-400">
               Fluent in English and Vietnamese.
             </p>
           </Card>
@@ -341,7 +341,7 @@ export default function Home() {
 
         <Section id="contact" title="Contact">
           <Card>
-            <p className="mb-6 max-w-xl text-sm leading-relaxed text-zinc-700 md:text-base dark:text-zinc-300">
+            <p className="mb-6 max-w-2xl text-sm leading-relaxed text-zinc-700 md:text-base dark:text-zinc-300">
               Reach out with opportunities or questions — I&apos;ll reply as soon as I can.
             </p>
             <ContactForm />

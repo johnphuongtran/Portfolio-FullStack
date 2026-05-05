@@ -65,7 +65,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="relative max-w-xl space-y-5" noValidate>
+    <form onSubmit={onSubmit} className="relative max-w-2xl space-y-5" noValidate>
       <div className="pointer-events-none absolute -left-[9999px] flex h-px w-px flex-col overflow-hidden opacity-0">
         <label htmlFor="contact-company">Company</label>
         <input
