@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ContactForm } from "@/app/components/ContactForm";
 
 const profile = {
   name: "Your Name",
@@ -116,6 +117,9 @@ export default function Home() {
             </a>
             <a href="#education" className="hover:text-zinc-900 dark:hover:text-zinc-100">
               Education
+            </a>
+            <a href="#contact" className="hover:text-zinc-900 dark:hover:text-zinc-100">
+              Contact
             </a>
           </nav>
         </div>
@@ -270,6 +274,13 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </Section>
+
+        <Section id="contact" title="Contact">
+          <p className="mb-6 max-w-xl text-zinc-700 dark:text-zinc-300">
+            Reach out with opportunities or questions — I&apos;ll reply as soon as I can.
+          </p>
+          <ContactForm />
         </Section>
 
         <footer className="mt-16 border-t border-zinc-200 pt-8 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
