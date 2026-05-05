@@ -167,7 +167,7 @@ export default function Home() {
       <SiteHeader name={profile.name} />
 
       <main id="main-content" className="mx-auto max-w-3xl px-6 pb-24 pt-6 md:pt-10">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm md:p-10 dark:shadow-none mb-10 md:mb-12">
+        <div className="mb-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm md:mb-16 md:p-10 dark:shadow-none">
           <p className="text-sm font-medium text-sky-700 dark:text-sky-400">{profile.location}</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
             {profile.name}
