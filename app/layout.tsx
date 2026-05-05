@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
   title: {
-    default: "Portfolio — Your Name",
-    template: "%s — Your Name",
+    default: "John Tran — HRIS & integrations",
+    template: "%s — John Tran",
   },
   description:
-    "Résumé and project showcase. Replace this description in app/layout.tsx for search and link previews.",
+    "HRIS Technical Solutions Analyst and integrations developer: Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy. Based in Houston, TX.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Portfolio",
-    title: "Portfolio — Your Name",
+    siteName: "John Tran",
+    title: "John Tran — HRIS & integrations",
     description:
-      "Résumé and project showcase. Replace this description in app/layout.tsx for search and link previews.",
+      "HRIS Technical Solutions Analyst and integrations developer: Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy.",
   },
 };
 
