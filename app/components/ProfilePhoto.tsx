@@ -38,7 +38,7 @@ export function ProfilePhoto({
         src={src}
         alt={`${name}, profile photo`}
         fill
-        className="object-cover"
+        className="object-cover object-[center_18%]"
         sizes="(max-width: 768px) 160px, 176px"
         priority
         onError={() => setFailed(true)}
