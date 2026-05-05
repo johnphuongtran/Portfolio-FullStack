@@ -9,6 +9,9 @@ function escapeHtml(text: string): string {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Node runtime: ensures Vercel injects project env vars reliably for this route. */
+export const runtime = "nodejs";
+
 type Body = {
   name?: unknown;
   email?: unknown;
@@ -39,13 +42,20 @@ function validate(body: Body): { ok: false; error: string } | { ok: true; name: 
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.RESEND_API_KEY?.trim();
   const to = process.env.CONTACT_TO_EMAIL?.trim();
   const from = process.env.RESEND_FROM?.trim() ?? "Portfolio <onboarding@resend.dev>";
 
   if (!apiKey || !to) {
+    const missing: string[] = [];
+    if (!apiKey) missing.push("RESEND_API_KEY");
+    if (!to) missing.push("CONTACT_TO_EMAIL");
     return Response.json(
-      { error: "Contact form is not configured. Set RESEND_API_KEY and CONTACT_TO_EMAIL on the server." },
+      {
+        error:
+          "Contact form is not configured. Set RESEND_API_KEY and CONTACT_TO_EMAIL for this deployment environment in Vercel, then redeploy.",
+        missingEnv: missing,
+      },
       { status: 503 },
     );
   }

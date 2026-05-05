@@ -21,11 +21,18 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message, company }),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        missingEnv?: string[];
+      };
 
       if (!res.ok) {
         setStatus("error");
-        setErrorMessage(typeof data.error === "string" ? data.error : "Something went wrong.");
+        let msg = typeof data.error === "string" ? data.error : "Something went wrong.";
+        if (Array.isArray(data.missingEnv) && data.missingEnv.length > 0) {
+          msg += ` Missing on server: ${data.missingEnv.join(", ")}.`;
+        }
+        setErrorMessage(msg);
         return;
       }
 
