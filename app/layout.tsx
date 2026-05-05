@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     template: "%s — John Tran",
   },
   description:
-    "Integrations Developer · HRIS Technical Solutions Analyst. Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy. Houston, TX.",
+    "HRIS Technical Solutions Analyst and integrations developer: Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy. Based in Houston, TX.",
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "John Tran",
     title: "John Tran — HRIS & integrations",
     description:
-      "Integrations Developer · HRIS Technical Solutions Analyst. Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy.",
+      "HRIS Technical Solutions Analyst and integrations developer: Boomi, UKG Pro WFM & Payroll, APIs, Python & Groovy.",
   },
 };
 
