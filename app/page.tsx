@@ -17,8 +17,8 @@ const profile = {
     linkedin: "https://www.linkedin.com/in/john-tran-0197b7253/",
     resume: "/resume.pdf",
   },
-  /** Place image at public/profile.jpg (or change path below). Supported: jpg, png, webp */
-  photoSrc: "/profile.jpg",
+  /** Professional headshot in /public */
+  photoSrc: "/profile.png",
 };
 
 /** Reverse chronological — Mitsubishi Heavy Industries America */

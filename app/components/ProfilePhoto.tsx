@@ -12,7 +12,7 @@ function initialsFromName(name: string) {
 
 export function ProfilePhoto({
   name,
-  src = "/profile.jpg",
+  src = "/profile.png",
 }: {
   name: string;
   /** File in /public — e.g. profile.jpg or profile.png */
