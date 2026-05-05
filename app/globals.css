@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #18181b;
+  --accent: #0284c7;
+  --accent-muted: color-mix(in oklab, var(--accent) 12%, transparent);
+  --surface: #ffffff;
+  --surface-muted: color-mix(in oklab, var(--foreground) 4%, var(--background));
+  --ring: color-mix(in oklab, var(--accent) 45%, transparent);
+  --border: color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 @theme inline {
@@ -14,12 +20,36 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c0c0e;
+    --foreground: #f4f4f5;
+    --accent: #38bdf8;
+    --accent-muted: color-mix(in oklab, var(--accent) 14%, transparent);
+    --surface: #141416;
+    --surface-muted: color-mix(in oklab, var(--foreground) 6%, var(--background));
+    --ring: color-mix(in oklab, var(--accent) 50%, transparent);
+    --border: color-mix(in oklab, var(--foreground) 14%, transparent);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, var(--accent-muted), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, var(--accent-muted), transparent 45%);
+  color: var(--foreground);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
   color: var(--foreground);
 }

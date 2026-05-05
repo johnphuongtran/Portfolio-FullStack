@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { ContactForm } from "@/app/components/ContactForm";
+import { HeroActions } from "@/app/components/HeroActions";
+import { SiteHeader } from "@/app/components/SiteHeader";
 
 const profile = {
   name: "John Tran",
@@ -54,42 +56,28 @@ const experience = [
       "Created and maintained process documentation and user-facing guides.",
     ],
   },
-  {
-    company: "United Parcel Service",
-    location: "Stafford, TX",
-    title: "Human Resources Supervisor (Seasonal)",
-    dates: "August 2022 – January 2023",
-    highlights: [
-      "Led peak-season hiring coordination across 20+ roles; reviewed high volumes of applications and supported onboarding for hundreds of new hires weekly.",
-    ],
-  },
-  {
-    company: "United Parcel Service",
-    location: "Stafford, TX",
-    title: "Human Resources Intern — Co-Operations (Temporary)",
-    dates: "August 2021 – January 2022",
-    highlights: [
-      "Supported hiring and staffing operations; scheduled interviews and assisted with background checks and I-9 processing.",
-    ],
-  },
 ];
 
-const spotlight = [
+type SpotlightItem = {
+  name: string;
+  description: string;
+  stack: string[];
+  href?: string;
+  demo?: string;
+};
+
+const spotlight: SpotlightItem[] = [
   {
     name: "UKG Pro WFM integrations (Boomi)",
     description:
       "End-to-end integration work on UKG Pro Workforce Management: Boomi processes, API usage where appropriate, transformation logic, and operational hardening so schedules and workforce data stay consistent.",
     stack: ["Boomi", "UKG Pro WFM", "Workforce Management API", "Python", "Groovy"],
-    href: null as string | null,
-    demo: null as string | null,
   },
   {
     name: "Payroll import & file-based integrations",
     description:
       "Payroll-focused pipelines for UKG Pro Payroll: file layouts, mapping discipline, SFTP/PGP, testing cycles, and documentation aimed at clean imports and fewer production surprises.",
     stack: ["UKG Pro Payroll", "SFTP", "PGP", "SuccessFactors EC", "SQL"],
-    href: null,
-    demo: null,
   },
 ];
 
@@ -153,9 +141,9 @@ function Section({
   return (
     <section
       id={id}
-      className="scroll-mt-24 border-t border-zinc-200/80 py-14 first:border-t-0 first:pt-8 dark:border-zinc-800/80 md:py-16"
+      className="scroll-mt-20 border-t border-[var(--border)] py-14 first:border-t-0 md:py-16"
     >
-      <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+      <h2 className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
         {title}
       </h2>
       {children}
@@ -163,61 +151,205 @@ function Section({
   );
 }
 
+function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div
+      className={`rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm md:p-8 dark:shadow-none ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-md dark:border-zinc-800/80">
-        <div className="mx-auto flex h-14 max-w-3xl items-center justify-between gap-4 px-6">
-          <a
-            href="#top"
-            className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
-          >
-            {profile.name}
-          </a>
-          <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-sm text-zinc-600 dark:text-zinc-400">
-            <a href="#about" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              About
-            </a>
-            <a href="#experience" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              Experience
-            </a>
-            <a href="#spotlight" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              Spotlight
-            </a>
-            <a href="#skills" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              Skills
-            </a>
-            <a href="#education" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              Education
-            </a>
-            <a href="#contact" className="hover:text-zinc-900 dark:hover:text-zinc-100">
-              Contact
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader name={profile.name} />
 
-      <main id="top" className="mx-auto max-w-3xl px-6 pb-24">
-        <div className="pt-10 md:pt-14">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{profile.location}</p>
+      <main id="main-content" className="mx-auto max-w-3xl px-6 pb-24 pt-6 md:pt-10">
+        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm md:p-10 dark:shadow-none">
+          <p className="text-sm font-medium text-sky-700 dark:text-sky-400">{profile.location}</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 md:text-5xl dark:text-zinc-50">
             {profile.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-zinc-600 md:text-xl dark:text-zinc-300">
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 md:text-xl dark:text-zinc-300">
             {profile.headline}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={profile.links.resume}
-              className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
-            >
-              Download résumé
-            </a>
+          <div className="mt-8">
+            <HeroActions
+              linkedin={profile.links.linkedin}
+              github={profile.links.github}
+              email={profile.links.email}
+              resumePath={profile.links.resume}
+            />
+          </div>
+        </div>
+
+        <Section id="about" title="About">
+          <Card>
+            <p className="max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+              {profile.summary}
+            </p>
+            <p className="mt-5 max-w-2xl border-t border-[var(--border)] pt-5 text-sm text-zinc-600 dark:text-zinc-400">
+              Fluent in English and Vietnamese.
+            </p>
+          </Card>
+        </Section>
+
+        <Section id="experience" title="Experience">
+          <ul className="flex flex-col gap-6">
+            {experience.map((job) => (
+              <li key={`${job.company}-${job.title}-${job.dates}`}>
+                <Card className="p-6 md:p-7">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">{job.title}</h3>
+                      <p className="mt-1 text-zinc-600 dark:text-zinc-400">
+                        {job.company}
+                        {job.location ? ` · ${job.location}` : ""}
+                      </p>
+                    </div>
+                    <p className="shrink-0 rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                      {job.dates}
+                    </p>
+                  </div>
+                  <ul className="mt-5 space-y-2 text-zinc-700 dark:text-zinc-300">
+                    {job.highlights.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-relaxed md:text-[0.9375rem]">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sky-500/90" aria-hidden />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section id="spotlight" title="Spotlight">
+          <ul className="flex flex-col gap-6">
+            {spotlight.map((item) => (
+              <li key={item.name}>
+                <Card className="p-6 md:p-7">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">{item.name}</h3>
+                    {item.href ?? item.demo ? (
+                      <div className="flex flex-wrap gap-3 text-sm">
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-sky-700 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:text-sky-400"
+                          >
+                            Link
+                          </a>
+                        ) : null}
+                        {item.demo ? (
+                          <a
+                            href={item.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-sky-700 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:text-sky-400"
+                          >
+                            Demo
+                          </a>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-700 md:text-base dark:text-zinc-300">
+                    {item.description}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {item.stack.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded-lg bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-800 ring-1 ring-zinc-200/80 dark:bg-zinc-950 dark:text-zinc-200 dark:ring-zinc-700/80"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section id="skills" title="Skills & certifications">
+          <Card>
+            <div className="grid gap-10 sm:grid-cols-2">
+              {skillGroups.map((group) => (
+                <div key={group.label}>
+                  <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">{group.label}</h3>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-lg bg-zinc-100 px-2.5 py-1 text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10 border-t border-[var(--border)] pt-8">
+              <h3 className="mb-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">Certifications</h3>
+              <ul className="space-y-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                {certifications.map((line) => (
+                  <li key={line} className="flex gap-3">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sky-500/90" aria-hidden />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Card>
+        </Section>
+
+        <Section id="education" title="Education">
+          <Card>
+            {education.map((edu) => (
+              <div key={edu.school}>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">{edu.school}</h3>
+                <p className="mt-2 text-zinc-600 dark:text-zinc-400">{edu.degree}</p>
+                {edu.dates ? <p className="mt-1 text-sm text-zinc-500">{edu.dates}</p> : null}
+                <p className="mt-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{edu.detail}</p>
+                {edu.extras?.length ? (
+                  <ul className="mt-4 space-y-2 border-t border-[var(--border)] pt-4 text-sm text-zinc-600 dark:text-zinc-400">
+                    {edu.extras.map((x) => (
+                      <li key={x}>{x}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ))}
+          </Card>
+        </Section>
+
+        <Section id="contact" title="Contact">
+          <Card>
+            <p className="mb-6 max-w-xl text-sm leading-relaxed text-zinc-700 md:text-base dark:text-zinc-300">
+              Reach out with opportunities or questions — I&apos;ll reply as soon as I can.
+            </p>
+            <ContactForm />
+          </Card>
+        </Section>
+
+        <footer className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--border)] pt-10 text-sm text-zinc-500 md:flex-row dark:text-zinc-500">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a
               href={profile.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-100 dark:hover:bg-zinc-900"
+              className="hover:text-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:hover:text-zinc-200"
             >
               LinkedIn
             </a>
@@ -225,165 +357,17 @@ export default function Home() {
               href={profile.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-zinc-300 px-4 py-2.5 text-sm font-medium text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-100 dark:hover:bg-zinc-900"
+              className="hover:text-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:hover:text-zinc-200"
             >
               GitHub
             </a>
             <a
               href={profile.links.email}
-              className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-sky-700 hover:text-sky-800 dark:text-sky-400 dark:hover:text-sky-300"
+              className="hover:text-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:hover:text-zinc-200"
             >
               Email
             </a>
           </div>
-          <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-500">
-            Add <code className="rounded bg-zinc-100 px-1 py-0.5 font-mono text-[0.7rem] dark:bg-zinc-800">public/resume.pdf</code>{" "}
-            if you want the résumé button to download a PDF.
-          </p>
-        </div>
-
-        <Section id="about" title="About">
-          <p className="max-w-2xl text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-            {profile.summary}
-          </p>
-          <p className="mt-4 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
-            Fluent in English and Vietnamese.
-          </p>
-        </Section>
-
-        <Section id="experience" title="Experience">
-          <ul className="space-y-10">
-            {experience.map((job) => (
-              <li key={`${job.company}-${job.title}-${job.dates}`}>
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                  <div>
-                    <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{job.title}</h3>
-                    <p className="text-zinc-600 dark:text-zinc-400">
-                      {job.company}
-                      {job.location ? ` · ${job.location}` : ""}
-                    </p>
-                  </div>
-                  <p className="shrink-0 text-sm text-zinc-500 dark:text-zinc-500">{job.dates}</p>
-                </div>
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-700 marker:text-zinc-400 dark:text-zinc-300">
-                  {job.highlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section id="spotlight" title="Spotlight">
-          <ul className="grid gap-8 sm:grid-cols-1">
-            {spotlight.map((item) => (
-              <li
-                key={item.name}
-                className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-6 dark:border-zinc-800 dark:bg-zinc-900/30"
-              >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{item.name}</h3>
-                  {(item.href ?? item.demo) ? (
-                    <div className="flex flex-wrap gap-3 text-sm">
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-medium text-sky-700 hover:underline dark:text-sky-400"
-                        >
-                          Link
-                        </a>
-                      ) : null}
-                      {item.demo ? (
-                        <a
-                          href={item.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-medium text-sky-700 hover:underline dark:text-sky-400"
-                        >
-                          Demo
-                        </a>
-                      ) : null}
-                    </div>
-                  ) : null}
-                </div>
-                <p className="mt-3 text-zinc-700 dark:text-zinc-300">{item.description}</p>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {item.stack.map((tech) => (
-                    <li
-                      key={tech}
-                      className="rounded-md bg-white px-2 py-1 text-xs font-medium text-zinc-700 ring-1 ring-zinc-200 dark:bg-zinc-950 dark:text-zinc-300 dark:ring-zinc-700"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section id="skills" title="Skills & certifications">
-          <div className="grid gap-8 sm:grid-cols-2">
-            {skillGroups.map((group) => (
-              <div key={group.label}>
-                <h3 className="mb-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">{group.label}</h3>
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-md bg-zinc-100 px-2.5 py-1 text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10">
-            <h3 className="mb-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">Certifications</h3>
-            <ul className="list-disc space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-300">
-              {certifications.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-        </Section>
-
-        <Section id="education" title="Education">
-          <ul className="space-y-6">
-            {education.map((edu) => (
-              <li key={edu.school}>
-                <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">{edu.school}</h3>
-                <p className="text-zinc-600 dark:text-zinc-400">{edu.degree}</p>
-                {edu.dates ? <p className="mt-1 text-sm text-zinc-500">{edu.dates}</p> : null}
-                <p className="mt-2 text-zinc-700 dark:text-zinc-300">{edu.detail}</p>
-                {edu.extras?.length ? (
-                  <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-400">
-                    {edu.extras.map((x) => (
-                      <li key={x}>{x}</li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section id="contact" title="Contact">
-          <p className="mb-6 max-w-xl text-zinc-700 dark:text-zinc-300">
-            Reach out with opportunities or questions — I&apos;ll reply as soon as I can.
-          </p>
-          <ContactForm />
-        </Section>
-
-        <footer className="mt-16 border-t border-zinc-200 pt-8 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-500">
-          <p>
-            © {new Date().getFullYear()} {profile.name}
-          </p>
         </footer>
       </main>
     </>

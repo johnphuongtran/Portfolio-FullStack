@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 
+const field =
+  "block w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 text-zinc-900 shadow-sm outline-none transition placeholder:text-zinc-400 focus:border-sky-500/70 focus:ring-2 focus:ring-sky-500/35 dark:text-zinc-50 dark:placeholder:text-zinc-500";
+
+const btnSubmit =
+  "inline-flex items-center justify-center rounded-xl bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white";
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,15 +55,18 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <p className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100">
+      <p
+        role="status"
+        className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100"
+      >
         Thanks — your message was sent. I&apos;ll get back to you soon.
       </p>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xl space-y-4">
-      <div className="hidden" aria-hidden="true">
+    <form onSubmit={onSubmit} className="relative max-w-xl space-y-5" noValidate>
+      <div className="pointer-events-none absolute -left-[9999px] flex h-px w-px flex-col overflow-hidden opacity-0">
         <label htmlFor="contact-company">Company</label>
         <input
           id="contact-company"
@@ -67,12 +76,12 @@ export function ContactForm() {
           autoComplete="off"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="block w-full rounded-md border border-zinc-300 px-3 py-2 dark:border-zinc-600"
+          className={field}
         />
       </div>
 
       <div>
-        <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+        <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
           Name
         </label>
         <input
@@ -81,14 +90,15 @@ export function ContactForm() {
           type="text"
           required
           maxLength={120}
+          autoComplete="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-sky-500/40 focus:border-sky-500 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-950 dark:text-zinc-50"
+          className={field}
         />
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="mb-1 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+        <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
           Email
         </label>
         <input
@@ -97,14 +107,15 @@ export function ContactForm() {
           type="email"
           required
           maxLength={254}
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-sky-500/40 focus:border-sky-500 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-950 dark:text-zinc-50"
+          className={field}
         />
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="mb-1 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+        <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
           Message
         </label>
         <textarea
@@ -116,22 +127,21 @@ export function ContactForm() {
           rows={5}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="block w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-sky-500/40 focus:border-sky-500 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-950 dark:text-zinc-50"
+          className={`${field} min-h-[120px] resize-y`}
         />
-        <p className="mt-1 text-xs text-zinc-500">10–5000 characters.</p>
+        <p className="mt-1.5 text-xs text-zinc-500">10–5000 characters.</p>
       </div>
 
       {status === "error" && errorMessage ? (
-        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100">
+        <p
+          role="alert"
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100"
+        >
           {errorMessage}
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
-      >
+      <button type="submit" disabled={status === "loading"} className={btnSubmit}>
         {status === "loading" ? "Sending…" : "Send message"}
       </button>
     </form>
