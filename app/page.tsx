@@ -141,7 +141,7 @@ function Section({
   return (
     <section
       id={id}
-      className="scroll-mt-20 border-t border-[var(--border)] py-14 first-of-type:border-t-0 md:py-16"
+      className="scroll-mt-20 border-t border-[var(--border)] py-14 md:py-16"
     >
       <h2 className="mb-6 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
         {title}
